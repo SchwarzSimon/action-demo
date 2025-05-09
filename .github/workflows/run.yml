@@ -1,0 +1,21 @@
+name: Run on workflow_run
+
+on:
+  workflow_run:
+    workflows:
+      - "Request"
+    types:
+      - completed
+
+jobs:
+  process-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: hello-artifact
+
+      - name: Print contents of hello.txt
+        run: cat hello.txt
