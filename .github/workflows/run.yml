@@ -12,10 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: hello-artifact
-
-      - name: Print contents of hello.txt
-        run: cat hello.txt
+    - name: Download environment data
+      id: download
+      uses: envoyproxy/toolshed/gh-actions/github/artifact/download@actions-v0.3.16
+      with:
+        name: hello-artifact
+        path: .
+        run-id: ${{ github.event.workflow_run.id }}
+    - name: Print contents of hello.txt
+      run: cat hello.txt
