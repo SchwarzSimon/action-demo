@@ -1,7 +1,7 @@
 name: Request
 
 on:
-  pull_request_target:
+  pull_request:
 
 jobs:
   create-and-upload:
