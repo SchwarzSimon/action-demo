@@ -1,0 +1,18 @@
+name: Request
+
+on:
+  pull_request:
+
+jobs:
+  create-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Create hello.txt
+      run: echo "Untrusted content" > hello.txt
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: hello-artifact
+        path: hello.txt
